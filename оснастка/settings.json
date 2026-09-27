@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(/clippings/**)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact|fork",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py",
+            "args": ["${CLAUDE_PROJECT_DIR}/.claude/state.py"],
+            "timeout": 15,
+            "statusMessage": "Сводка хранилища"
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "PYTHONUTF8": "1"
+  }
+}
