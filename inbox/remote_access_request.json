@@ -1,0 +1,316 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:AR-{employee}-{######}",
+ "creation": "2025-02-25 14:41:59.707790",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "access_request_section",
+  "status",
+  "employee",
+  "department",
+  "designation",
+  "branch",
+  "phone_no",
+  "column_break_ff0k",
+  "division_1c",
+  "position_1c",
+  "territory_1c",
+  "section_break_shdp",
+  "time_to_access",
+  "date_start",
+  "date_end",
+  "private_phone_no",
+  "private_email",
+  "column_break_jnuo",
+  "workstation",
+  "workstation_type",
+  "operating_system",
+  "defender_name",
+  "column_break_hthu",
+  "reason",
+  "security_agreement_acceptance",
+  "security_agreement",
+  "section_break_7g33",
+  "sort_order",
+  "state_machine_log"
+ ],
+ "fields": [
+  {
+   "fieldname": "access_request_section",
+   "fieldtype": "Tab Break",
+   "label": "Запрос доступа"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Статус",
+   "options": "Новая заявка\nЧерновик\nНа доработке\nСогласование руководителя\nОтклонено руководителем\nСогласование УИБ\nОтклонено УИБ\nИсполнение заявки\nДоступы предоставлены\nОтклонено техническим специалистом\nДоступы отозваны\nОтклонено",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Сотрудник",
+   "options": "Employee",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Подразделение AD",
+   "read_only": 1
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Должность AD",
+   "read_only": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Филиал AD",
+   "read_only": 1
+  },
+  {
+   "fieldname": "phone_no",
+   "fieldtype": "Data",
+   "label": "Телефон"
+  },
+  {
+   "fieldname": "column_break_ff0k",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "division_1c",
+   "fieldtype": "Small Text",
+   "label": "Подразделение",
+   "read_only": 1
+  },
+  {
+   "fieldname": "position_1c",
+   "fieldtype": "Small Text",
+   "label": "Должность",
+   "read_only": 1
+  },
+  {
+   "fieldname": "territory_1c",
+   "fieldtype": "Data",
+   "label": "Филиал",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_shdp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "time_to_access",
+   "fieldtype": "Select",
+   "label": "Временной план",
+   "options": "\n09.00-18.00(обычный)\n07.00-20.00(расширенный)\n07.00-22.00(расширенный 2)\n07.00-24.00(расширенный 3)\n06.00-20.00(расширенный 4)\n24часа(круглосуточный)",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_start",
+   "fieldtype": "Date",
+   "label": "Срок от",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_end",
+   "fieldtype": "Date",
+   "label": "Срок по(включительно)",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:frappe.user.has_role('Administrator') || frappe.user.has_role('Officer of Information Security') || frappe.user.has_role('Head of Information Security') || doc.owner == frappe.session.user",
+   "fieldname": "private_phone_no",
+   "fieldtype": "Data",
+   "label": "Телефон для экстренной связи",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:frappe.user.has_role('Administrator') || frappe.user.has_role('Officer of Information Security') || frappe.user.has_role('Head of Information Security') || doc.owner == frappe.session.user",
+   "fieldname": "private_email",
+   "fieldtype": "Data",
+   "label": "e-mail",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_jnuo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "workstation",
+   "fieldtype": "Data",
+   "label": "АРМ",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workstation_type",
+   "fieldtype": "Select",
+   "label": "Тип",
+   "options": "\nСтационарная\nНоутбук\nПланшет",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "fieldname": "operating_system",
+   "fieldtype": "Select",
+   "label": "Операционная система",
+   "options": "\nWindows\nMacOS\nLinux\nAndroid\nИная",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "fieldname": "defender_name",
+   "fieldtype": "Data",
+   "label": "Название средства защиты от вредоносного ПО",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_hthu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Обоснование",
+   "options": "\nПервичное трудоустройство\nПеревод\nНовый функционал",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "security_agreement_acceptance",
+   "fieldtype": "Check",
+   "label": "Подтверждаю, что",
+   "read_only_depends_on": "eval:!(['Новая заявка', 'На доработке'].includes(doc.status) || frappe.session.user === 'Administrator')"
+  },
+  {
+   "default": "Учетная запись на рабочей станции защищена сложным паролем. \nОбязуюсь принять и выполнять все необходимые меры по защите удаленного рабочего места от действий посторонних лиц (в том числе членов семьи), а также немедленно уведомить УИБ Банка в случае нарушения мной требований безопасности удаленного рабочего места.",
+   "fieldname": "security_agreement",
+   "fieldtype": "Small Text",
+   "label": "Соглашение об информационной безопасности",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_7g33",
+   "fieldtype": "Tab Break",
+   "label": "Статусы заявки"
+  },
+  {
+   "depends_on": "eval: doc.status !== 'Новая заявка'",
+   "fieldname": "sort_order",
+   "fieldtype": "Button",
+   "label": "Поменять порядок сортировки"
+  },
+  {
+   "default": "Сотрудник",
+   "fieldname": "state_machine_log",
+   "fieldtype": "HTML",
+   "is_virtual": 1,
+   "label": "State Machine"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-20 00:23:07.490285",
+ "modified_by": "Administrator",
+ "module": "IT Service Remote Access",
+ "name": "Remote Access Request",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Technical support",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "ITSM User",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "ITSM Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Access Requestor",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "track_seen": 1
+}

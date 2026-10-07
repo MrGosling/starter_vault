@@ -20,8 +20,21 @@
               "icon": "lucide-file",
               "title": "Промпты"
             }
+          },
+          {
+            "id": "05215d47fa0ab838",
+            "type": "leaf",
+            "state": {
+              "type": "json",
+              "state": {
+                "file": "inbox/remote_access_request.json"
+              },
+              "icon": "lucide-file",
+              "title": "remote_access_request"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -203,14 +216,17 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "505c60249be8fac1",
+  "active": "05215d47fa0ab838",
   "lastOpenFiles": [
-    "Решения.md",
-    "Справка о системе.md",
-    "Стек и окружение.md",
-    "effort/_о папке.md",
+    "inbox/_о папке.md",
+    "inbox/remote_access_request.json",
     "README.md",
+    "Справка о системе.md",
+    "Решения.md",
+    "Стек и окружение.md",
+    "CLAUDE.md.md",
     "Промпты.md",
-    "inbox/_о папке.md"
+    "clippings/_о папке.md",
+    "effort/_о папке.md"
   ]
 }
